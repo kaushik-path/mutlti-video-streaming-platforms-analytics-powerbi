@@ -161,34 +161,15 @@ report.
 
 ### Dashboard overview
 
-![Dashboard overview](Screenshots/dashboard-overview.png)
+![Dashboard overview](Screenshots/1.png)
 
-### Platform comparison
+### Genra and geography
 
-![Platform comparison](Screenshots/platform-analysis.png)
+![Genra and geography](Screenshots/2.png)
 
-### Genre analysis
+## Content Profile
 
-![Genre analysis](Screenshots/genre-analysis.png)
-
-### Ratings and release trends
-
-![Ratings and release trends](Screenshots/ratings-release-trends.png)
-
-### Geographical analysis
-
-![Geographical analysis](Screenshots/geographical-analysis.png)
-
-> **Screenshot setup:** Create a folder named `Screenshots` in the
-> repository root. Save your exported Power BI report-page images using
-> the filenames above, or edit the image paths in this README to match
-> your actual filenames. GitHub displays the images only when the
-> referenced files have been uploaded.
-
-## Business Insights
-
-Add three to five findings supported by the dashboard. Include a number,
-comparison or clear observation wherever the data supports it.
+![Content Profile](Screenshots/3.png)
 
 -   **Platform comparison:** Add a verified finding about differences in
     content volume or composition.

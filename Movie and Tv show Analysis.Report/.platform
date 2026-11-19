@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Movie and Tv show Analysis"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "487506ab-08cc-455a-a287-768b8a2083b0"
+  }
+}

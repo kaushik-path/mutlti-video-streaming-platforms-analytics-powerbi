@@ -1,0 +1,10 @@
+relationship a116feb1-82d2-2658-f7a9-68e2a8edf8aa
+	crossFilteringBehavior: bothDirections
+	fromColumn: Genre-Map.Key
+	toColumn: Data.Key
+
+relationship dc20edcb-c4d2-4de2-56d6-e239748ed2f4
+	crossFilteringBehavior: bothDirections
+	fromColumn: Country-Map.Key
+	toColumn: Data.Key
+

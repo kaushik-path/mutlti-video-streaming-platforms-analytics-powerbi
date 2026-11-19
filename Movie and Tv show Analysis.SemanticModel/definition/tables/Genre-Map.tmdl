@@ -1,0 +1,37 @@
+table Genre-Map
+	lineageTag: b39db570-3a6c-4334-8aa7-9620831d3c4f
+
+	column Key
+		dataType: string
+		lineageTag: f012376c-9736-4b65-959a-010c28e305d3
+		summarizeBy: none
+		sourceColumn: Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Genre
+		dataType: string
+		lineageTag: 243055c2-ddd7-4190-a7a6-e65afb6d5eae
+		summarizeBy: none
+		sourceColumn: Genre
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Genre-Map = m
+		mode: import
+		source =
+				let
+				    Source = Data,
+				    #"Removed Other Columns" = Table.SelectColumns(Source, {"Key", "listed_in"}),
+				    #"Split Column by Delimiter" = Table.ExpandListColumn(Table.TransformColumns(#"Removed Other Columns", {{"listed_in", Splitter.SplitTextByDelimiter(",", QuoteStyle.Csv), let itemType = (type nullable text) meta [Serialized.Text = true] in type {itemType}}}), "listed_in"),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Split Column by Delimiter", {{"Key", type text}, {"listed_in", type text}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Changed Type", {{"listed_in", Text.Trim, type text}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Trimmed Text", each ([listed_in] <> null and [listed_in] <> "")),
+				    #"Renamed Columns" = Table.RenameColumns(#"Filtered Rows", {{"listed_in", "Genre"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,269 @@
+table Data
+	lineageTag: 5bb1c575-a800-4ad8-9be0-47e4852f25f7
+
+	measure 'Total Titles' = DISTINCTCOUNT(Data[Key])
+		formatString: 0
+		lineageTag: 3a76e3c5-ac66-4e8d-a469-2f0ed3e8e76d
+
+	measure 'TV Shows' = CALCULATE([Total Titles], Data[type] = "TV Show")
+		formatString: 0
+		lineageTag: 9a89fe56-a951-460f-93bf-6dcba9d9db98
+
+	measure Movies = CALCULATE([Total Titles], Data[type] = "Movie")
+		formatString: 0
+		lineageTag: fd27d1e3-7173-4ab4-8ca0-97634adf2a38
+
+	measure '% Movies' = ```
+			DIVIDE([Movies], [Total Titles])
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 58a0ef46-2747-4140-8123-f9bc93fed553
+
+	measure '% TV Shows' = ```
+			DIVIDE([TV Shows], [Total Titles])
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 36dc0fac-5ded-4767-9292-93acd4a38b95
+
+	measure 'Avg Movie Duration' = ```
+			CALCULATE(AVERAGE(Data[duration_in_min]), Data[type] = "Movie")
+			
+			```
+		lineageTag: a6b9710e-de62-475c-becf-3db5d1a27f75
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Seasons' = ```
+			CALCULATE(AVERAGE(Data[tv_shows_season]), Data[type] = "TV Show")
+			
+			```
+		lineageTag: 9ca616e9-f98b-47d3-9e66-fa951ac7658a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Platform Share' = DIVIDE([Total Titles], CALCULATE([Total Titles], ALL(Data[source])))
+		lineageTag: 08046b72-e923-408c-b8c6-bf073475a30a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Genre Count' = DISTINCTCOUNT('Genre-Map'[Genre])
+		formatString: 0
+		lineageTag: 9e8bf3c1-d591-4352-815a-2e3bc46e6df8
+
+	measure 'Country Count' = DISTINCTCOUNT('Country-Map'[Country])
+		formatString: 0
+		lineageTag: e7d086fc-ad87-42af-bae0-16420fcc074c
+
+	measure 'Top Genre' = MAXX(TOPN(1, VALUES('Genre-Map'[Genre]), [Total Titles]), 'Genre-Map'[Genre])
+		lineageTag: 38fe6d72-dcc0-42e2-ae03-f1dbd811968a
+
+	measure 'Top Country' = MAXX(TOPN(1, VALUES('Country-Map'[Country]), [Total Titles]), 'Country-Map'[Country])
+		lineageTag: 700f99a0-296a-4f29-a5a7-d2bb9813c61a
+
+	measure 'Genre % of Platform' =
+			
+			DIVIDE(
+			    [Total Titles],
+			    CALCULATE([Total Titles], ALL('Genre-Map'[Genre]))
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 580ba772-911a-490c-975e-9719d8a36c7e
+
+	measure 'Top Rating' = MAXX(TOPN(1, VALUES('Data'[rating]), [Total Titles]), 'Data'[rating])
+		lineageTag: 48b2de0b-e0ca-4a89-8948-f8e5a0ecb750
+
+	column show_id
+		dataType: string
+		lineageTag: 04691c04-5c2e-41ad-9605-ed3c88cc4597
+		summarizeBy: none
+		sourceColumn: show_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		lineageTag: 7c7ac510-6cc2-4255-b84f-5adf5945e7a4
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: 615c852f-04d7-4520-9b20-bee77e93d379
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column title
+		dataType: string
+		lineageTag: a168b798-f316-4635-8094-f5798aa42c4b
+		summarizeBy: none
+		sourceColumn: title
+
+		annotation SummarizationSetBy = Automatic
+
+	column director
+		dataType: string
+		lineageTag: b80f82dd-3886-40eb-8cfc-c528cebad082
+		summarizeBy: none
+		sourceColumn: director
+
+		annotation SummarizationSetBy = Automatic
+
+	column cast
+		dataType: string
+		lineageTag: 31545959-b228-4615-af74-8a112cdcbb10
+		summarizeBy: none
+		sourceColumn: cast
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: 6640863d-8fd5-4cab-a88d-135b886947b8
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column release_year
+		dataType: int64
+		formatString: 0
+		lineageTag: b16ae399-f956-4ef1-8890-afb92d2d3f8e
+		summarizeBy: sum
+		sourceColumn: release_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column rating
+		dataType: string
+		lineageTag: 62473549-97b7-411d-8ee6-02e3bf5f4d31
+		summarizeBy: none
+		sourceColumn: rating
+
+		annotation SummarizationSetBy = Automatic
+
+	column duration
+		dataType: string
+		lineageTag: 843d7e51-9ae6-42e5-bb98-b44166e1709d
+		summarizeBy: none
+		sourceColumn: duration
+
+		annotation SummarizationSetBy = Automatic
+
+	column listed_in
+		dataType: string
+		lineageTag: 2f5015b9-1561-4c55-aa6c-5ea3b821dd82
+		summarizeBy: none
+		sourceColumn: listed_in
+
+		annotation SummarizationSetBy = Automatic
+
+	column duration_in_min
+		dataType: int64
+		formatString: 0
+		lineageTag: c99d5ab3-8b34-44a9-994f-64515684fa4d
+		summarizeBy: sum
+		sourceColumn: duration_in_min
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Data","TableItemName":"duration_in_min (bins)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column Key
+		dataType: string
+		lineageTag: 06595720-57a5-4738-9892-ddccd4a45b89
+		summarizeBy: none
+		sourceColumn: Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column tv_shows_season
+		dataType: int64
+		formatString: 0
+		lineageTag: 7a852515-0f4e-4223-98c5-fdae41fa8ec8
+		summarizeBy: sum
+		sourceColumn: tv_shows_season
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'duration_in_min (bins)' =
+			IF(
+				ISBLANK('Data'[duration_in_min]),
+				BLANK(),
+				INT('Data'[duration_in_min] / 15) * 15
+			)
+		formatString: 0
+		lineageTag: 56cd713b-aa7e-4962-b999-8bb58c255143
+		summarizeBy: none
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Data"
+				          }
+				        },
+				        "Property": "duration_in_min"
+				      }
+				    }
+				  ],
+				  "binningMetadata": {
+				    "binSize": {
+				      "value": 15.0,
+				      "unit": 0
+				    }
+				  }
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"d","Entity":"Data"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"duration_in_min"}}],"BinItem":{"Expression":{"Floor":{"Expression":{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"duration_in_min"}},"Size":15.0}}}}
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Data = m
+		mode: import
+		source =
+				let
+				    Source = Folder.Files("C:\Users\kaushik.pathak\Downloads\resume\Movies and Tv showa\Data"),
+				    #"Added Custom" = Table.AddColumn(Source, "Custom", each Csv.Document([Content])),
+				    #"Expanded Custom" = Table.ExpandTableColumn(#"Added Custom", "Custom", {"Column1", "Column2", "Column3", "Column4", "Column5", "Column6", "Column7", "Column8", "Column9", "Column10", "Column11", "Column12"}, {"Custom.Column1", "Custom.Column2", "Custom.Column3", "Custom.Column4", "Custom.Column5", "Custom.Column6", "Custom.Column7", "Custom.Column8", "Custom.Column9", "Custom.Column10", "Custom.Column11", "Custom.Column12"}),
+				    #"Added Custom1" = Table.AddColumn(#"Expanded Custom", "Custom", each if Text.Contains([Name], "netflix") then "Netflix"
+				else if Text.Contains([Name], "amazon") then "Amazon Prime"
+				else if Text.Contains([Name], "disney") then "Disney Plus"
+				else "Unknown"),
+				    #"Removed Columns" = Table.RemoveColumns(#"Added Custom1",{"Content", "Name", "Extension", "Date accessed", "Date modified", "Date created", "Attributes", "Folder Path"}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Columns", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"show_id", type text}, {"type", type text}, {"title", type text}, {"director", type text}, {"cast", type text}, {"country", type text}, {"date_added", type date}, {"release_year", Int64.Type}, {"rating", type text}, {"duration", type text}, {"listed_in", type text}, {"description", type text}, {"Amazon Prime", type text}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"Amazon Prime", "source"}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Renamed Columns","","n/A",Replacer.ReplaceValue,{"director", "cast"}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Replaced Value",{"date_added"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Removed Columns1","","Rating Not Available",Replacer.ReplaceValue,{"rating"}),
+				    #"Removed Columns2" = Table.RemoveColumns(#"Replaced Value1",{"description"}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Removed Columns2",{"show_id", "source", "type", "title", "director", "cast", "country", "release_year", "rating", "duration", "listed_in"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Reordered Columns","","United States",Replacer.ReplaceValue,{"country"}),
+				    #"Removed Errors" = Table.RemoveRowsWithErrors(#"Replaced Value2", {"release_year"}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Removed Errors", "Duration (Movie)", each if [duration] <> null and Text.Contains([duration], "min") then [duration] else null),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Added Conditional Column"," min","",Replacer.ReplaceText,{"Duration (Movie)"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Replaced Value3",{{"Duration (Movie)", Int64.Type}}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Changed Type1",{{"Duration (Movie)", "duration_in_min"}}),
+				    #"Added Conditional Column1" = Table.AddColumn(#"Renamed Columns1", "tv_shows_season", each if [duration] <> null and Text.Contains([duration], "Season") then Text.BeforeDelimiter([duration], " ") else null),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Added Conditional Column1",{{"tv_shows_season", Int64.Type}}),
+				    #"Removed Errors1" = Table.RemoveRowsWithErrors(#"Changed Type2", {"tv_shows_season"}),
+				    #"Added Custom2" = Table.AddColumn(#"Removed Errors1", "Key", each [source] & "_" & [show_id], type text),
+				    #"Reordered Columns1" = Table.ReorderColumns(#"Added Custom2",{"Key", "show_id", "source", "type", "title", "director", "cast", "country", "release_year", "rating", "duration", "listed_in", "duration_in_min", "tv_shows_season"}),
+				    #"Changed Type3" = Table.TransformColumnTypes(#"Reordered Columns1",{{"Key", type text}, {"release_year", Int64.Type}, {"duration_in_min", Int64.Type}, {"tv_shows_season", Int64.Type}, {"source", type text}, {"type", type text}, {"title", type text}, {"director", type text}, {"cast", type text}, {"country", type text}})
+				in
+				    #"Changed Type3"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Movie and Tv show Analysis"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "b78d1c36-fff5-4c54-9f11-817ecbd50ec8"
+  }
+}

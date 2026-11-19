@@ -1,0 +1,39 @@
+table Country-Map
+	lineageTag: 37f3b662-5dd9-4a50-b5a7-24f825bb4801
+
+	column Key
+		dataType: string
+		lineageTag: e022cc0d-66a6-461b-8d09-fd8579cf82cf
+		summarizeBy: none
+		sourceColumn: Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 59579236-af49-46ed-9ee9-8df1be12e627
+		summarizeBy: none
+		sourceColumn: Country
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Country-Map = m
+		mode: import
+		source =
+				let
+				    Source = Data,
+				    #"Removed Other Columns" = Table.SelectColumns(Source, {"Key", "country"}),
+				    #"Split Column by Delimiter" = Table.ExpandListColumn(Table.TransformColumns(#"Removed Other Columns", {{"country", Splitter.SplitTextByDelimiter(",", QuoteStyle.Csv), let itemType = (type nullable text) meta [Serialized.Text = true] in type {itemType}}}), "country"),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Split Column by Delimiter", {{"Key", type text}, {"country", type text}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Changed Type", {{"country", Text.Trim, type text}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Trimmed Text", each ([country] <> null and [country] <> "")),
+				    #"Renamed Columns" = Table.RenameColumns(#"Filtered Rows", {{"country", "Country"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

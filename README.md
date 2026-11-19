@@ -1,280 +1,335 @@
+<div align="center">
+
 # Video Streaming Platforms: A Comparative Analysis of Content Strategies
 
-An interactive Business Intelligence project developed using **Microsoft
-Power BI** to compare content strategies across video streaming
-platforms. The dashboard is intended to explore content distribution,
-genres, ratings, release trends and geographical patterns using
-interactive visualizations.
+**Netflix vs Amazon Prime vs Disney+: what each platform puts on the shelf, and who it is built for.**
 
-> **Project note:** Update the dataset source, platform names, record
-> count, report-page names and findings below to match the actual
-> dataset and dashboard. Do not publish unverified metrics or
-> conclusions.
+![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
+![DAX](https://img.shields.io/badge/DAX-Measures-0078D4?style=for-the-badge)
+![Power Query](https://img.shields.io/badge/Power%20Query-M-217346?style=for-the-badge)
+![Data](https://img.shields.io/badge/Data-3%20CSVs%20%7C%2019,843%20titles-2D9C8F?style=for-the-badge)
 
-## Table of Contents
-
--   [Project Overview](#project-overview)
--   [Business Problem](#business-problem)
--   [Objectives](#objectives)
--   [Dataset](#dataset)
--   [Tools and Technologies](#tools-and-technologies)
--   [Methodology](#methodology)
--   [Analysis Areas](#analysis-areas)
--   [Dashboard Screenshots](#dashboard-screenshots)
--   [Business Insights](#business-insights)
--   [Repository Structure](#repository-structure)
--   [How to Open the Project](#how-to-open-the-project)
--   [Conclusion](#conclusion)
--   [Future Enhancements](#future-enhancements)
--   [Author](#author)
-
-------------------------------------------------------------------------
-
-## Project Overview
-
-The project presents a comparative analysis of video streaming platforms
-through a Power BI dashboard. It brings content-related information into
-an interactive reporting experience so users can explore differences in
-platform catalogues and content strategies.
-
-The analysis focuses on multiple dimensions of streaming content, such
-as content type, genre, ratings, release year and country, depending on
-the fields available in the source dataset.
-
-## Business Problem
-
-Streaming services compete through their content libraries, genre mix,
-regional availability and the types of movies and television shows they
-offer. Raw datasets can make it difficult to compare these
-characteristics across platforms.
-
-This project uses data preparation and interactive business intelligence
-reporting to make those comparisons easier to explore and interpret.
-
-## Objectives
-
--   Compare content distribution across streaming platforms.
--   Examine the mix of movies and TV shows.
--   Explore genre composition and diversity.
--   Analyse content ratings and classifications.
--   Review release-year trends.
--   Explore country-wise or regional content distribution where
-    supported by the dataset.
--   Present findings through an interactive Power BI report.
-
-## Dataset
-
-The source files used by the Power BI project are stored in the `Data/`
-directory.
-
-  Dataset detail      Project information
-  ------------------- ------------------------------------------
-  Dataset source      **Add the original source and URL**
-  File format         **Add actual format (CSV, Excel, etc.)**
-  Platforms covered   **Add actual platform names**
-  Number of records   **Add verified record count**
-  Main fields         **Add the actual column names**
-
-The analysis should only describe fields and platforms that are present
-in the supplied dataset.
-
-## Tools and Technologies
-
-  -----------------------------------------------------------------------
-  Tool / Technology                   Purpose
-  ----------------------------------- -----------------------------------
-  Microsoft Power BI Desktop          Report and dashboard development
-
-  Power Query                         Data connection, cleaning and
-                                      transformation, where implemented
-
-  DAX                                 Measures and calculations, where
-                                      implemented
-
-  Power BI data model                 Organising tables and
-                                      relationships, where implemented
-
-  Git and GitHub                      Source control and project
-                                      documentation
-  -----------------------------------------------------------------------
-
-## Methodology
-
-1.  **Data inspection:** Review the available source files and
-    understand their structure.
-2.  **Data preparation:** Connect Power BI to the source data.
-3.  **Data cleaning:** Address missing, inconsistent or incorrectly
-    formatted values where required.
-4.  **Data transformation:** Prepare fields and tables for analysis
-    using Power Query, where implemented.
-5.  **Data modelling:** Define relationships between tables where
-    required.
-6.  **Measure development:** Create DAX calculations for report metrics
-    where applicable.
-7.  **Visualization:** Build report pages, charts, filters and other
-    interactive elements.
-8.  **Analysis:** Use the report to compare platform content patterns
-    and identify evidence-based observations.
-
-## Analysis Areas
-
-The following are the intended analytical themes. Retain only the areas
-represented in the actual report.
-
-### 1. Platform-wise content comparison
-
-Compare the volume and composition of content available across
-platforms.
-
-### 2. Movies and TV shows
-
-Explore the distribution of movies and television shows by platform or
-other available dimensions.
-
-### 3. Genre analysis
-
-Compare genre representation and identify categories with larger or
-smaller shares of the available catalogue.
-
-### 4. Ratings and content classification
-
-Review content-rating distributions and classifications included in the
-dataset.
-
-### 5. Release trends
-
-Explore how content is distributed across release years and identify
-changes over time.
-
-### 6. Geographical distribution
-
-Compare country-wise or regional content availability when geographic
-fields are available and reliable.
-
-## Dashboard Screenshots
-
-Screenshots let visitors preview the report without downloading or
-opening the Power BI file. Upload your **actual report screenshots**
-into the `Screenshots/` folder and use the matching filenames below.
-Remove any section that does not correspond to a page or visual in your
-report.
-
-### Dashboard overview
+</div>
 
 ![Dashboard overview](Screenshots/1.png)
 
-### Genra and geography
+## Table of Contents
 
-![Genra and geography](Screenshots/2.png)
+- [Project Overview](#-project-overview)
+- [Business Problem](#-business-problem)
+- [Objectives](#-objectives)
+- [Dataset](#-dataset)
+- [Tools and Technologies](#-tools-and-technologies)
+- [Key Questions the Dashboard Answers](#-key-questions-the-dashboard-answers)
+- [Tools and Technologies](#-tools-and-technologies)
+- [Tools and Technologies](#-tools-and-technologies)
+- [Methodology](#-methodology)
+- [Analysis Areas](#-analysis-areas)
+- [Dashboard Screenshots](#-dashboard-screenshots)
+- [Business Insights](#-business-insights)
+- [Repository Structure](#-repository-structure)
+- [How to Open the Project](#-how-to-open-the-project)
+- [Conclusion](#-conclusion)
+- [Future Enhancements](#-future-enhancements)
+- [Author](#-author)
 
-## Content Profile
+---
 
-![Content Profile](Screenshots/3.png)
+## Project Overview
 
--   **Platform comparison:** Add a verified finding about differences in
-    content volume or composition.
--   **Content type:** Add a verified observation about the movie and
-    TV-show mix.
--   **Genre mix:** Add a verified finding about leading or
-    underrepresented genres.
--   **Release trends:** Add a verified observation about content across
-    release years.
--   **Geography or ratings:** Add a verified finding if these dimensions
-    are included in the report.
+An interactive Power BI dashboard that compares the content libraries of **Netflix, Amazon Prime and Disney+**. It combines three raw catalogue exports into one model and lets users explore catalogue size, movie vs TV mix, genres, audience ratings, runtimes, release trends and production countries.
 
-Avoid inserting illustrative or assumed results as actual findings.
+| | |
+|---|---|
+| **Platforms** | Netflix, Amazon Prime, Disney+ |
+| **Titles analysed** | 19,843 (15K movies, 5K TV shows) |
+| **Genres / countries** | 102 genres, 125 countries |
+| **Dashboard** | 3 interactive pages: Overview, Content Profile, Genre & Geography |
+| **Stack** | Power BI, Power Query (M), DAX, data model with bridge tables |
+
+---
+
+## Business Problem
+
+A streaming platform wins subscribers through its library. A content or strategy team keeps asking the same questions, but raw catalogue files can't answer them quickly:
+
+- How big is each library, and how is it split between movies and TV shows?
+- Is a platform still growing its catalogue, or slowing down?
+- Which genres does each platform lean on, and where is it thin?
+- Is the content built for kids and families or for mature audiences?
+- Where does the content come from?
+
+This project turns three separate files into one interactive view where those questions can be answered in a few clicks.
+
+---
+
+## Objectives
+
+- Compare catalogue size and share across platforms.
+- Measure the movie vs TV show mix of each platform.
+- Identify each platform's genre strengths and gaps.
+- Compare target audiences through content ratings.
+- Track how catalogue volume changes by release year.
+- Understand production geography and where content comes from.
+- Deliver all of this as a clean, filterable Power BI report for non-technical users.
+
+---
+
+## Dataset
+
+Three CSV files in the `Data/` folder, all with the same 12 columns:
+`show_id, type, title, director, cast, country, date_added, release_year, rating, duration, listed_in, description`
+
+| File | Platform | Rows | Movies | TV Shows |
+|---|---|---|---|---|
+| `netflix_titles.csv` | Netflix | 8,807 | 6,131 | 2,676 |
+| `amazon_prime_titles.csv` | Amazon Prime | 9,668 | 7,814 | 1,854 |
+| `disney_plus_titles.csv` | Disney+ | 1,368 | 991 | 377 |
+| **Total** | | **19,843** | **14,936** | **4,907** |
+
+Release years in the data run from the 1920s to 2021.
+
+
+
+### Data notes and limitations
+
+- **Missing countries are filled with "United States".** About 93% of Amazon Prime's rows (8,996 of 9,668) have no country in the source, so the US count and the **Top Country** card are likely overstated.
+- **Genre labels differ by platform.** The same genre appears as *Comedy* (Amazon, Disney+) and *Comedies* (Netflix), *Drama* and *Dramas*, *Documentary* and *Documentaries*. The genre matrix shows these as separate rows.
+- **Genre percentages are shares of genre tags,** not of titles, because one title can carry several genres.
+- **Snapshot data.** Files end in 2021, so the latest release year may be incomplete. The data covers catalogue content, not viewership.
+- **Rating systems differ.** Amazon uses age bands (13+, 16+, ALL) while Netflix and Disney+ use TV/MPA ratings, so cross-platform rating comparisons are directional.
+- `date_added` is ~98% empty for Amazon, so it was dropped from the analysis.
+
+---
+
+## Tools and Technologies
+
+| Tool | Used for |
+|---|---|
+| **Power BI Desktop** | Report and dashboard design |
+| **Power Query (M)** | Loading, cleaning and reshaping the data |
+| **DAX** | KPI and analytical measures |
+| **Data modelling** | Bridge tables and relationships for multi-value fields |
+| **PBIP project format** | Version-control-friendly report and model files |
+| **Git & GitHub** | Source control and documentation |
+
+## Key Questions the Dashboard Answers
+
+| Business question | Where to look | Metric used |
+|---|---|---|
+| Who has the biggest library? | Overview | Total Titles, Platform Share |
+| Movie-heavy or series-heavy? | Overview, Content Profile | % Movies, % TV Shows |
+| Is the catalogue growing? | Overview | Titles by release year |
+| What is each platform's genre identity? | Genre & Geography | Genre specialization matrix, treemap |
+| Which audience does it target? | Content Profile | Rating mix by platform |
+| How long are movies, and how deep are series? | Content Profile | Avg Movie Duration, Avg Seasons, runtime bins |
+| Where is content produced? | Genre & Geography | Country Count, Top Country, map |
+
+---
+
+## Key Findings
+
+> All numbers below come from the dataset and the dashboard screenshots.
+
+**1. Amazon Prime has the largest catalogue, Netflix is close, Disney+ is small.**
+Amazon Prime has 9,668 titles, Netflix 8,807 and Disney+ 1,368. Disney+ is roughly 14% the size of Amazon, so it competes on curation rather than volume.
+
+**2. Everyone is movie-first, Amazon most of all.**
+Movies make up 75.27% of all titles. By platform: Amazon Prime ~81%, Disney+ ~72%, Netflix ~70%. Netflix has the most balanced mix, which fits its heavy investment in series.
+
+**3. Netflix's release-year volume peaks around 2018 and then drops; Amazon keeps climbing.**
+Netflix overtakes Amazon in titles per release year from about 2015, peaks near 2018, and falls by 2021. Amazon accelerates to its highest point in 2021. *Note: the data is a 2021 snapshot, so the latest year may be incomplete.*
+
+**4. Each platform has a clear genre identity.**
+- **Amazon Prime:** Drama-led (38.14% of its genre tags), then Comedy, Action and Suspense.
+- **Netflix:** International Movies (31.25%) and Dramas (27.56%) lead, backed by International TV Shows.
+- **Disney+:** Animation (37.72%) and Comedy (36.33%), with Kids and Family strongly represented.
+
+**5. The audiences are different.**
+Netflix leans toward mature ratings (TV-MA is its most common rating, followed by TV-14). Disney+ is built around TV-G, TV-PG, G and PG. Amazon's most common ratings are 13+, 16+ and ALL, with a notable 18+ share.
+
+**6. Movies cluster around 90 minutes; most series are short-run.**
+Average movie duration is 93.49 minutes and the runtime histogram peaks in the 90–105 minute bins on all three platforms. TV shows average 1.78 seasons, and the largest group on every platform is single-season shows.
+
+**7. Content is global, with the US and India most visible.**
+Drama is the top genre overall and the United States the top country. In the raw files, India is the second-largest producing country for both Netflix and Amazon Prime. Read the US figure with the caution below.
+
+### What this suggests for a content team
+
+- **Disney+** can't win on volume, so its edge is the family and animation niche. Adding library breadth outside it is the open question.
+- **Netflix** has pulled back on new-title volume since its 2018 peak while staying international-heavy. Its mix points to a quality-over-quantity shift, which is worth testing against viewership data.
+- **Amazon** is the volume play, strongest in Drama and broad in ratings, so it is aiming at the widest audience.
+
+*These are readings of catalogue data only. Viewership or engagement data would be needed to confirm them.*
+
+**Key DAX measures**
+
+| Measure | Purpose |
+|---|---|
+| `Total Titles` | Distinct count of title keys |
+| `Movies`, `TV Shows` | Titles filtered by type |
+| `% Movies`, `% TV Shows` | Share of the catalogue |
+| `Platform Share` | Platform titles as a share of all titles |
+| `Avg Movie Duration` | Mean runtime in minutes (movies only) |
+| `Avg Seasons` | Mean season count (TV shows only) |
+| `Genre Count`, `Country Count` | Distinct genres and countries in the current filter |
+| `Top Genre`, `Top Country`, `Top Rating` | `TOPN`-based leaders for the current filter |
+| `Genre % of Platform` | A genre's share of all genre tags in the current filter |
+| `duration_in_min (bins)` | 15-minute runtime buckets |
+
+---
+
+## Methodology
+
+1. **Combine:** loaded all CSVs from the `Data/` folder in one Power Query and tagged each row with its platform from the file name.
+2. **Clean:** promoted headers, set data types, removed rows with type errors, and filled blank `director`/`cast` with `n/A` and blank `rating` with `Rating Not Available`.
+3. **Transform:** split `duration` into `duration_in_min` (movies) and `tv_shows_season` (TV shows), and dropped `description` and `date_added`.
+4. **Create a unique key:** built `Key = source_show_id`, since `show_id` repeats across platforms.
+5. **Handle multi-value fields:** split comma-separated `listed_in` and `country` into one row per value, trimmed them, and stored them as two bridge tables, **Genre-Map** and **Country-Map**.
+6. **Model:** joined both bridge tables to the main `Data` table on `Key`, so a title with several genres or countries counts in each one.
+
+```
+Genre-Map ──┐
+            ├──►  Data  (one row per title)
+Country-Map ┘
+```
+
+7. **Measure:** wrote DAX for KPIs, shares, averages and "top" cards.
+8. **Visualise:** built three report pages with platform and content-type slicers on every page.
+
+---
+
+## 📊 Analysis Areas
+
+| # | Area | What it shows | Where |
+|---|---|---|---|
+| 1 | **Platform comparison** | Catalogue size and share by platform | Overview |
+| 2 | **Movies vs TV shows** | Content-type mix per platform | Overview, Content Profile |
+| 3 | **Release trends** | Titles per release year by platform | Overview |
+| 4 | **Genre analysis** | Genre specialization and top-10 genres | Genre & Geography |
+| 5 | **Ratings & audience** | Rating mix, movie runtime, TV season depth | Content Profile |
+| 6 | **Geography** | Production footprint across 125 countries | Genre & Geography |
+
+---
+
+## Dashboard Screenshots
+
+### Page 1: Overview
+Platform size, movie vs TV split and release-year trend, with slicers for platform and content type.
+
+![Overview](Screenshots/1.png)
+
+### Page 2: Genre and Geography
+Genre specialization by platform, a global production map and a top-10 genres treemap.
+
+![Genre and geography](Screenshots/2.png)
+
+### Page 3: Content Profile
+Rating mix by platform, movie runtime distribution in 15-minute bins, TV season depth and an interactive library explorer (source → type → rating → genre → country).
+
+![Content profile](Screenshots/3.png)
+
+---
+
+## Business Insights
+
+**1. Amazon Prime has the biggest library, Netflix is close, Disney+ is small.**
+Amazon has 9,668 titles, Netflix 8,807 and Disney+ 1,368. Disney+ is about 14% of Amazon's size, so it competes on curation rather than volume.
+
+**2. Every platform is movie-first, Amazon most of all.**
+Movies are 75.27% of all titles: Amazon ~81%, Disney+ ~72%, Netflix ~70%. Netflix has the most balanced mix, in line with its heavy series investment.
+
+**3. Netflix's release-year volume peaks around 2018 and then falls; Amazon keeps climbing.**
+Netflix leads in titles per release year from about 2015 and peaks near 2018, then drops by 2021. Amazon accelerates to its highest point in 2021. *The data is a 2021 snapshot, so the last year may be incomplete.*
+
+**4. Each platform has a clear genre identity.**
+- **Amazon Prime:** Drama-led (38.14% of its genre tags), then Comedy, Action and Suspense.
+- **Netflix:** International Movies (31.25%) and Dramas (27.56%), backed by International TV Shows.
+- **Disney+:** Animation (37.72%) and Comedy (36.33%), with Kids and Family strongly represented.
+
+**5. The audiences are different.**
+Netflix leans mature (TV-MA is its most common rating, then TV-14). Disney+ is built around TV-G, TV-PG, G and PG. Amazon's most common ratings are 13+, 16+ and ALL, with a notable 18+ share.
+
+**6. Movies cluster around 90 minutes; most series are short-run.**
+Average movie duration is 93.49 minutes, and the runtime histogram peaks in the 90–105 minute bins on all three platforms. TV shows average 1.78 seasons, and single-season shows are the largest group on every platform.
+
+**7. Content is global, with the US and India most visible.**
+Drama is the top genre overall and the United States the top country. In the raw files, India is second for both Netflix and Amazon Prime. Treat the US figure with caution (see data notes).
+
+### What this suggests for a content team
+
+- **Disney+** can't win on volume, so its edge is the family and animation niche. The open question is how far it should broaden beyond it.
+- **Netflix** has cut new-title volume since its 2018 peak while staying international-heavy. That points to a quality-over-quantity shift, worth testing against viewership data.
+- **Amazon** is the volume play: strong in Drama and broad across ratings, aimed at the widest audience.
+
+*These readings come from catalogue data only. Viewership or engagement data would be needed to confirm them.*
+
+---
 
 ## Repository Structure
 
-The folder and file names below are illustrative. Keep the structure
-section aligned with the actual names in your GitHub repository.
-
-``` text
+```text
 mutlti-video-streaming-platforms-analytics-powerbi/
 │
 ├── Data/
-│   └── source data files
+│   ├── netflix_titles.csv
+│   ├── amazon_prime_titles.csv
+│   └── disney_plus_titles.csv
 │
 ├── Screenshots/
-│   ├── dashboard-overview.png
-│   ├── platform-analysis.png
-│   ├── genre-analysis.png
-│   ├── ratings-release-trends.png
-│   └── geographical-analysis.png
+│   ├── 1.png                                  # Overview
+│   ├── 2.png                                  # Genre and geography
+│   └── 3.png                                  # Content profile
 │
-├── Movie and Tv show Analysis.Report/
-├── Movie and Tv show Analysis.SemanticModel/
+├── Movie and Tv show Analysis.Report/         # PBIP report definition
+├── Movie and Tv show Analysis.SemanticModel/  # PBIP model (tables, DAX, relationships)
 ├── Movie and Tv show Analysis.pbip
 ├── Movie and Tv show Analysis.pbix
 ├── .gitignore
 └── README.md
 ```
 
+---
+
 ## How to Open the Project
 
-### Requirements
+**Requirements:** Power BI Desktop (Windows).
 
--   Microsoft Power BI Desktop.
--   Access to the project source data.
--   Git, if you want to clone the repository.
-
-### Clone the repository
-
-``` bash
+```bash
 git clone https://github.com/kaushik-path/mutlti-video-streaming-platforms-analytics-powerbi.git
-cd mutlti-video-streaming-platforms-analytics-powerbi
 ```
 
-### Open in Power BI Desktop
+1. Open `Movie and Tv show Analysis.pbix` (or the `.pbip` file) in Power BI Desktop.
+2. If Power BI shows a missing-source error, go to **Home → Transform data → Data → Source**.
+3. The `Data` query points to a local folder on the original machine. Change the path in `Folder.Files(...)` to your cloned `Data/` folder.
+4. Click **Close & Apply** and refresh.
 
-1.  Open the cloned project folder.
-2.  Locate the `.pbip` file and open it with Power BI Desktop.
-    Alternatively, open the `.pbix` file.
-3.  If Power BI reports a missing source, open **Home → Transform
-    data**.
-4.  In Power Query, update the source paths to point to the local files
-    in the `Data/` directory.
-5.  Confirm that all required source files are present.
-6.  Select **Close & Apply**, then refresh the report.
-7.  Review the report pages and interact with the available filters and
-    visuals.
+> Platform names come from the file names (`netflix`, `amazon`, `disney`), so keep the three CSV names unchanged.
 
-**Important:** Local folder paths may differ between computers. Do not
-assume that a path from the original development machine will work for
-another user. A Power Query parameter for the project data-folder path
-can make this easier to maintain.
+---
 
 ## Conclusion
 
-This project demonstrates the use of Power BI for comparative content
-analysis and business intelligence reporting. It brings together data
-preparation, modelling and visualization in an interactive report that
-helps users explore content strategies across streaming platforms.
+The three platforms are building very different libraries. Amazon competes on volume and breadth, Netflix on an international, mature-leaning mix, and Disney+ on a smaller, family-and-animation catalogue. The project shows an end-to-end BI workflow: combining raw files, cleaning and modelling multi-value fields, writing DAX and presenting the results in a dashboard a business user can explore on their own.
 
-The value of the project is in the analysis supported by the dataset and
-the clarity with which the dashboard communicates its findings.
+---
 
 ## Future Enhancements
 
--   Add more streaming platforms or updated datasets.
--   Include audience, viewership or engagement data if reliable sources
-    are available.
--   Extend the analysis with additional DAX measures.
--   Improve data refresh and source-path management.
--   Add a documented data dictionary and metric definitions.
--   Expand the report with additional business questions and validated
-    insights.
+- Standardize genre labels across platforms (Comedy/Comedies, Drama/Dramas) for a like-for-like comparison.
+- Replace the "United States" default with an *Unknown* category to make country analysis reliable.
+- Add a data-folder parameter in Power Query so the project opens on any machine without edits.
+- Add viewership, IMDb score or subscriber data to link catalogue strategy to performance.
+- Add more platforms and a newer snapshot to track change over time.
+- Add a short data dictionary and metric definitions.
+
+---
 
 ## Author
 
 **Kaushik Pathak**
+Data Analytics | Business Intelligence | Power BI | SQL | Python
 
-Data Analytics \| Business Intelligence \| Power BI \| SQL \| Python
+[![GitHub](https://img.shields.io/badge/GitHub-kaushik--path-181717?style=flat&logo=github)](https://github.com/kaushik-path)
 
--   GitHub: [kaushik-path](https://github.com/kaushik-path)
--   LinkedIn: **Add your LinkedIn profile URL**
-
-------------------------------------------------------------------------
-
-If you find this project useful, feel free to explore the repository and
-share constructive feedback.
+⭐ If this project was useful, a star on the repo is appreciated.

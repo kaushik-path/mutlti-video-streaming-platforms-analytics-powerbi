@@ -11,27 +11,28 @@
 
 </div>
 
-![Dashboard overview](Screenshots/1.png)
+<p align="center">
+  <img src="Screenshots/1.png" alt="Overview" width="32%">
+  <img src="Screenshots/2.png" alt="Genre and geography" width="32%">
+  <img src="Screenshots/3.png" alt="Content profile" width="32%">
+</p>
 
 ## Table of Contents
 
-- [Project Overview](#-project-overview)
-- [Business Problem](#-business-problem)
-- [Objectives](#-objectives)
-- [Dataset](#-dataset)
-- [Tools and Technologies](#-tools-and-technologies)
-- [Key Questions the Dashboard Answers](#-key-questions-the-dashboard-answers)
-- [Tools and Technologies](#-tools-and-technologies)
-- [Tools and Technologies](#-tools-and-technologies)
-- [Methodology](#-methodology)
-- [Analysis Areas](#-analysis-areas)
-- [Dashboard Screenshots](#-dashboard-screenshots)
-- [Business Insights](#-business-insights)
-- [Repository Structure](#-repository-structure)
-- [How to Open the Project](#-how-to-open-the-project)
-- [Conclusion](#-conclusion)
-- [Future Enhancements](#-future-enhancements)
-- [Author](#-author)
+- [Project Overview](#project-overview)
+- [Business Problem](#business-problem)
+- [Objectives](#objectives)
+- [Dataset](#dataset)
+- [Tools and Technologies](#tools-and-technologies)
+- [Methodology](#methodology)
+- [Analysis Areas](#analysis-areas)
+- [Dashboard Screenshots](#dashboard-screenshots)
+- [Business Insights](#business-insights)
+- [Repository Structure](#repository-structure)
+- [How to Open the Project](#how-to-open-the-project)
+- [Conclusion](#conclusion)
+- [Future Enhancements](#future-enhancements)
+- [Author](#author)
 
 ---
 
@@ -89,8 +90,6 @@ Three CSV files in the `Data/` folder, all with the same 12 columns:
 
 Release years in the data run from the 1920s to 2021.
 
-
-
 ### Data notes and limitations
 
 - **Missing countries are filled with "United States".** About 93% of Amazon Prime's rows (8,996 of 9,668) have no country in the source, so the US count and the **Top Country** card are likely overstated.
@@ -113,56 +112,7 @@ Release years in the data run from the 1920s to 2021.
 | **PBIP project format** | Version-control-friendly report and model files |
 | **Git & GitHub** | Source control and documentation |
 
-## Key Questions the Dashboard Answers
-
-| Business question | Where to look | Metric used |
-|---|---|---|
-| Who has the biggest library? | Overview | Total Titles, Platform Share |
-| Movie-heavy or series-heavy? | Overview, Content Profile | % Movies, % TV Shows |
-| Is the catalogue growing? | Overview | Titles by release year |
-| What is each platform's genre identity? | Genre & Geography | Genre specialization matrix, treemap |
-| Which audience does it target? | Content Profile | Rating mix by platform |
-| How long are movies, and how deep are series? | Content Profile | Avg Movie Duration, Avg Seasons, runtime bins |
-| Where is content produced? | Genre & Geography | Country Count, Top Country, map |
-
----
-
-## Key Findings
-
-> All numbers below come from the dataset and the dashboard screenshots.
-
-**1. Amazon Prime has the largest catalogue, Netflix is close, Disney+ is small.**
-Amazon Prime has 9,668 titles, Netflix 8,807 and Disney+ 1,368. Disney+ is roughly 14% the size of Amazon, so it competes on curation rather than volume.
-
-**2. Everyone is movie-first, Amazon most of all.**
-Movies make up 75.27% of all titles. By platform: Amazon Prime ~81%, Disney+ ~72%, Netflix ~70%. Netflix has the most balanced mix, which fits its heavy investment in series.
-
-**3. Netflix's release-year volume peaks around 2018 and then drops; Amazon keeps climbing.**
-Netflix overtakes Amazon in titles per release year from about 2015, peaks near 2018, and falls by 2021. Amazon accelerates to its highest point in 2021. *Note: the data is a 2021 snapshot, so the latest year may be incomplete.*
-
-**4. Each platform has a clear genre identity.**
-- **Amazon Prime:** Drama-led (38.14% of its genre tags), then Comedy, Action and Suspense.
-- **Netflix:** International Movies (31.25%) and Dramas (27.56%) lead, backed by International TV Shows.
-- **Disney+:** Animation (37.72%) and Comedy (36.33%), with Kids and Family strongly represented.
-
-**5. The audiences are different.**
-Netflix leans toward mature ratings (TV-MA is its most common rating, followed by TV-14). Disney+ is built around TV-G, TV-PG, G and PG. Amazon's most common ratings are 13+, 16+ and ALL, with a notable 18+ share.
-
-**6. Movies cluster around 90 minutes; most series are short-run.**
-Average movie duration is 93.49 minutes and the runtime histogram peaks in the 90–105 minute bins on all three platforms. TV shows average 1.78 seasons, and the largest group on every platform is single-season shows.
-
-**7. Content is global, with the US and India most visible.**
-Drama is the top genre overall and the United States the top country. In the raw files, India is the second-largest producing country for both Netflix and Amazon Prime. Read the US figure with the caution below.
-
-### What this suggests for a content team
-
-- **Disney+** can't win on volume, so its edge is the family and animation niche. Adding library breadth outside it is the open question.
-- **Netflix** has pulled back on new-title volume since its 2018 peak while staying international-heavy. Its mix points to a quality-over-quantity shift, which is worth testing against viewership data.
-- **Amazon** is the volume play, strongest in Drama and broad in ratings, so it is aiming at the widest audience.
-
-*These are readings of catalogue data only. Viewership or engagement data would be needed to confirm them.*
-
-**Key DAX measures**
+### Key DAX measures
 
 | Measure | Purpose |
 |---|---|
@@ -188,7 +138,7 @@ Drama is the top genre overall and the United States the top country. In the raw
 5. **Handle multi-value fields:** split comma-separated `listed_in` and `country` into one row per value, trimmed them, and stored them as two bridge tables, **Genre-Map** and **Country-Map**.
 6. **Model:** joined both bridge tables to the main `Data` table on `Key`, so a title with several genres or countries counts in each one.
 
-```
+```text
 Genre-Map ──┐
             ├──►  Data  (one row per title)
 Country-Map ┘
@@ -199,16 +149,16 @@ Country-Map ┘
 
 ---
 
-## 📊 Analysis Areas
+## Analysis Areas
 
-| # | Area | What it shows | Where |
-|---|---|---|---|
-| 1 | **Platform comparison** | Catalogue size and share by platform | Overview |
-| 2 | **Movies vs TV shows** | Content-type mix per platform | Overview, Content Profile |
-| 3 | **Release trends** | Titles per release year by platform | Overview |
-| 4 | **Genre analysis** | Genre specialization and top-10 genres | Genre & Geography |
-| 5 | **Ratings & audience** | Rating mix, movie runtime, TV season depth | Content Profile |
-| 6 | **Geography** | Production footprint across 125 countries | Genre & Geography |
+| # | Area | Question it answers | Key metrics | Page |
+|---|---|---|---|---|
+| 1 | **Platform comparison** | Who has the biggest library? | Total Titles, Platform Share | Overview |
+| 2 | **Movies vs TV shows** | Movie-heavy or series-heavy? | % Movies, % TV Shows | Overview, Content Profile |
+| 3 | **Release trends** | Is the catalogue growing? | Titles by release year | Overview |
+| 4 | **Genre analysis** | What is each platform's genre identity? | Genre matrix, Top Genre, treemap | Genre & Geography |
+| 5 | **Ratings & audience** | Who is the content for? | Rating mix, Avg Movie Duration, Avg Seasons | Content Profile |
+| 6 | **Geography** | Where is content produced? | Country Count, Top Country, map | Genre & Geography |
 
 ---
 
@@ -254,7 +204,7 @@ Netflix leans mature (TV-MA is its most common rating, then TV-14). Disney+ is b
 Average movie duration is 93.49 minutes, and the runtime histogram peaks in the 90–105 minute bins on all three platforms. TV shows average 1.78 seasons, and single-season shows are the largest group on every platform.
 
 **7. Content is global, with the US and India most visible.**
-Drama is the top genre overall and the United States the top country. In the raw files, India is second for both Netflix and Amazon Prime. Treat the US figure with caution (see data notes).
+Drama is the top genre overall and the United States the top country. In the raw files, India is second for both Netflix and Amazon Prime. Treat the US figure with caution (see data notes above).
 
 ### What this suggests for a content team
 
